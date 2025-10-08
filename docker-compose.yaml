@@ -1,0 +1,60 @@
+
+services:
+  auth:
+    build:
+      context: .
+      dockerfile: ./apps/auth/Dockerfile
+      target: development
+    command: pnpm run start:dev auth
+    env_file:
+      - ./apps/auth/.env
+    ports:
+      - '3001:3001'
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  category:
+    build:
+      context: .
+      dockerfile: ./apps/categories/Dockerfile
+      target: development
+    command: pnpm run start:dev categories
+    env_file:
+      - ./apps/categories/.env
+    ports:
+      - '3003:3003'
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  customers:
+    build:
+      context: .
+      dockerfile: ./apps/customers/Dockerfile
+      target: development
+    command: pnpm run start:dev customers
+    env_file:
+      - ./apps/customers/.env
+    ports:
+      - '3005:3005'
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  transaction:
+    build:
+      context: .
+      dockerfile: ./apps/transaction/Dockerfile
+      target: development
+    command: pnpm run start:dev transaction
+    env_file:
+      - ./apps/transaction/.env
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  mysql:
+    image: mysql
+    env_file:
+      - .env
+    ports:
+      - '3306:3306'
