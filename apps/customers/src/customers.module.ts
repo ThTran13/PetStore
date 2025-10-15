@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CustomersController } from './customers.controller';
 import { CustomersService } from './customers.service';
 import { AUTH_SERVICE, DatabaseModule, LoggerModule } from '@app/common';
-import { Customers } from './dto/customers.entity';
+import { Customers } from './models/customers.entity';
 import { CustomersRepository } from './customers.repository';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';

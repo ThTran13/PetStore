@@ -23,6 +23,22 @@ export class CategoriesService {
         return this.productsService.create(createProductDto);
     }
 
+    async getPets() {
+        return this.petsService.findAll();
+    }
+
+    async getProducts() {
+        return this.productsService.findAll();
+    }
+
+    async deletePet(id: number) {
+        return this.petsService.remove(id);
+    }
+    
+    async deleteProduct(id: number) {
+        return this.productsService.remove(id);
+    }
+
     async getPetCategory(): Promise<Category> {
         const [pets, petsCount] = await Promise.all([
             this.petsService.findAll(),

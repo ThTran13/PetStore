@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { CustomersService } from './customers.service';
-import { CreateCustomersDto } from './models/create-customers.dto';
+import { CreateCustomersDto } from './dto/create-customers.dto';
 import { JwtAuthGuard } from '@app/common';
 
 @Controller('customer')

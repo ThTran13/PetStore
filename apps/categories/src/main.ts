@@ -9,6 +9,10 @@ async function bootstrap() {
   const app = await NestFactory.create(CategoriesModule);
   const configService = app.get(ConfigService);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  app.enableCors({
+    origin: 'http://localhost:4000',
+    credentials: true,
+  });
   app.useLogger(app.get(Logger));
   app.connectMicroservice({
     transport: Transport.TCP,

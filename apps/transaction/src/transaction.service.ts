@@ -18,7 +18,7 @@ export class TransactionService {
 
   create(createTransactionDto: CreateTransactionDto) {
     const orderDetails = forkJoin(
-      createTransactionDto.orderItems.map(order => 
+      createTransactionDto.orderItems.map(order =>
         this.getItemDetails(order.itemId, order.itemType).pipe(
           map(itemDetails => ({
             ...order,
@@ -32,8 +32,8 @@ export class TransactionService {
     return orderDetails.pipe(
       map(orders => {
         const orderEntities = orders.map(order => new Orders(order));
-  
-        const totalAmount = createTransactionDto.totalAmount || 
+
+        const totalAmount = createTransactionDto.totalAmount ||
           this.calculateTotalAmount(orderEntities);
 
         const transaction = new TransactionEntity({
@@ -45,7 +45,7 @@ export class TransactionService {
         });
         return transaction;
       }),
-      switchMap(transaction => 
+      switchMap(transaction =>
         from(this.transactionRepository.create(transaction))
       )
     );
@@ -71,7 +71,7 @@ export class TransactionService {
 
   private getItemDetails(itemId: number, itemType: string) {
     const pattern = itemType === 'pet' ? 'get_pet_by_id' : 'get_product_by_id';
-    
+
     return this.categoriesService.send(pattern, itemId).pipe(
       map(itemDetails => {
         if (!itemDetails) {

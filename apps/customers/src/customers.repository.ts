@@ -2,7 +2,7 @@ import { AbstractRepository } from "@app/common";
 import { Injectable, Logger } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { EntityManager, Repository } from "typeorm";
-import { Customers } from "./dto/customers.entity";
+import { Customers } from "./models/customers.entity";
 
 @Injectable()
 export class CustomersRepository extends AbstractRepository<Customers> {
