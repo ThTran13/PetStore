@@ -4,6 +4,7 @@ const API_URLS = {
   CUSTOMERS: `${BASE_URL}:3005/customer`,
   PETS: `${BASE_URL}:3003/categories/pets`,
   PRODUCTS: `${BASE_URL}:3003/categories/products`,
+  TRANSACTIONS: `${BASE_URL}:3000/transaction`,
 };
 
 export default API_URLS;

@@ -5,10 +5,10 @@ export default function Button({ children, ...props }) {
     <MuiButton
       {...props}
       sx={{
-        backgroundColor: '#6a0dad', 
-        color: '#fff',             
+        backgroundColor: '#f7eeed', 
+        color: 'black',             
         '&:hover': {
-          backgroundColor: '#580c99', 
+          backgroundColor: '#f7eeed', 
         },
       }}
     >

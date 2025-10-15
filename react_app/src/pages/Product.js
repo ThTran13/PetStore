@@ -1,9 +1,8 @@
-import { DataGrid } from '@mui/x-data-grid';
-import { Paper, TextField, Box } from '@mui/material';
+import { Paper, TextField, Box, Typography } from '@mui/material';
 import API_URLS from '../constants/url';
 import { UseHooks } from '../hooks/useHooks';
 import { useState } from 'react';
-import { Button } from '../components';
+import { Button, DataGrid } from '../components';
 
 const columns = [
     { field: 'id', headerName: 'ID', width: 150 },
@@ -34,7 +33,7 @@ function Products() {
 
     const handleDeleteSelected = async () => {
         if (selectedRows.length === 0) {
-            alert('Please select customers to delete');
+            alert('Please select products to delete');
             return;
         }
 
@@ -51,51 +50,79 @@ function Products() {
 
     return (
         <Box sx={{ width: '100%' }}>
-            { }
-            <Box sx={{ mb: 2, display: 'flex', gap: 2 }}>
-                <TextField
-                    label="Name"
-                    name="name"
-                    value={newProduct.name}
-                    onChange={handleChange}
-                />
-                <TextField
-                    label="Cost"
-                    name="cost"
-                    type="number"
-                    value={newProduct.cost}
-                    onChange={handleChange}
-                />
-                <TextField
-                    label="Made In"
-                    name="madeIn"
-                    type="text"
-                    value={newProduct.madeIn}
-                    onChange={handleChange}
-                />
-
-                <TextField
-                    label="Belong To"
-                    name="belongTo"
-                    type="text"
-                    value={newProduct.belongTo}
-                    onChange={handleChange}
-                />
-
-                <Button variant="contained" onClick={handleCreateProduct}>
-                    Add Product
-                </Button>
-                <Button
-                    variant="contained"
-                    color="error"
-                    onClick={handleDeleteSelected}
-                    disabled={selectedRows.length === 0}
-                >
-                    Delete Selected
-                </Button>
+            <Box sx={{ mb: 2, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                <Typography variant="h4" component="h2" sx={{ fontWeight: 'bold' }}>
+                    Product Management
+                </Typography>
             </Box>
 
-            { }
+            <Paper
+                sx={{
+                    p: 3,
+                    mb: 3,
+                    background: 'white'
+                }}
+
+            >
+                <Box
+                    sx={{
+                        display: 'grid',
+                        gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: 'repeat(4, 1fr)' },
+                        gap: 2,
+                        mb: 2
+                    }}>
+                    <TextField
+                        label="Name"
+                        name="name"
+                        value={newProduct.name}
+                        onChange={handleChange}
+                    />
+                    <TextField
+                        label="Cost"
+                        name="cost"
+                        type="number"
+                        value={newProduct.cost}
+                        onChange={handleChange}
+                    />
+                    <TextField
+                        label="Made In"
+                        name="madeIn"
+                        type="text"
+                        value={newProduct.madeIn}
+                        onChange={handleChange}
+                    />
+
+                    <TextField
+                        label="Belong To"
+                        name="belongTo"
+                        type="text"
+                        value={newProduct.belongTo}
+                        onChange={handleChange}
+                    />
+
+                    <Button variant="contained" onClick={handleCreateProduct}>
+                        Add Product
+                    </Button>
+                    <Button
+                        variant="contained"
+                        color="error"
+                        onClick={handleDeleteSelected}
+                        disabled={selectedRows.length === 0}
+                    >
+                        Delete Selected
+                    </Button>
+                </Box>
+                <Box sx={{
+                    display: 'grid',
+                    gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: 'repeat(4, 1fr)' },
+                    gap: 2,
+                    mb: 2
+                }}>
+
+                </Box>
+            </Paper>
+
+
             <Paper sx={{ height: 600, width: '100%' }}>
                 <DataGrid
                     rows={products}
